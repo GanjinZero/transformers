@@ -96,6 +96,9 @@ class TFTrainingArguments(TrainingArguments):
             :obj:`num_train_epochs`.
         warmup_steps (:obj:`int`, `optional`, defaults to 0):
             Number of steps used for a linear warmup from 0 to :obj:`learning_rate`.
+        warmup_ratio (:obj:'float', 'optional', defaults to 0):
+            Ratio of steps used for a  linear warmup from 0 to :obj:'learning rate'. Overrides
+            :obj:'warmup_ratio'.
         logging_dir (:obj:`str`, `optional`):
             `TensorBoard <https://www.tensorflow.org/tensorboard>`__ log directory. Will default to
             `runs/**CURRENT_DATETIME_HOSTNAME**`.

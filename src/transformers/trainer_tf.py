@@ -218,10 +218,14 @@ class TFTrainer:
         TFTrainer's init through :obj:`optimizers`, or subclass and override this method.
         """
         if not self.optimizer and not self.lr_scheduler:
+            if self.args.warmup_ratio > 0:
+                warmup_steps = int(self.args.warmup_ratio * num_training_steps)
+            else:
+                warmup_steps = self.args.warmup_steps
             self.optimizer, self.lr_scheduler = create_optimizer(
                 self.args.learning_rate,
                 num_training_steps,
-                self.args.warmup_steps,
+                warmup_steps,
                 adam_beta1=self.args.adam_beta1,
                 adam_beta2=self.args.adam_beta2,
                 adam_epsilon=self.args.adam_epsilon,

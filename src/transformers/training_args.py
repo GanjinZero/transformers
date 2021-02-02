@@ -133,6 +133,9 @@ class TrainingArguments:
             values.
         warmup_steps (:obj:`int`, `optional`, defaults to 0):
             Number of steps used for a linear warmup from 0 to :obj:`learning_rate`.
+        warmup_ratio (:obj:'float', 'optional', defaults to 0):
+            Ratio of steps used for a  linear warmup from 0 to :obj:'learning rate'. Overrides
+            :obj:'warmup_ratio'.
         logging_dir (:obj:`str`, `optional`):
             `TensorBoard <https://www.tensorflow.org/tensorboard>`__ log directory. Will default to
             `runs/**CURRENT_DATETIME_HOSTNAME**`.
@@ -324,6 +327,7 @@ class TrainingArguments:
         metadata={"help": "The scheduler type to use."},
     )
     warmup_steps: int = field(default=0, metadata={"help": "Linear warmup over warmup_steps."})
+    warmup_ratio: float = field(default=0, metadata={"help": "Linear warmup ratio. If > 0: override warmup_steps."})
 
     logging_dir: Optional[str] = field(default_factory=default_logdir, metadata={"help": "Tensorboard log dir."})
     logging_first_step: bool = field(default=False, metadata={"help": "Log the first global_step"})
